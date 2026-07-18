@@ -1,0 +1,3 @@
+"I chose to drop the balance columns (oldbalanceOrg, newbalanceOrig, oldbalanceDest, and newbalanceDest) to prevent data leakage. In a production environment, the model must predict fraud before these balances are reconciled/annulled, so including them would provide the model with post-event information it wouldn't have in real-time."
+
+"I excluded isFlaggedFraud as a feature because it represents a simplistic, rule-based legacy system. By excluding it, I forced the model to learn the underlying patterns of fraudulent behavior rather than simply replicating the existing, flawed 200,000-unit threshold rule."
