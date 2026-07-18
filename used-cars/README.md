@@ -30,3 +30,15 @@ used-cars/
 │   └── preprocessing.py     # Custom transformer classes (BaseEstimator/TransformerMixin)
 ├── pipeline.py              # Main pipeline definition, training, and evaluation
 └── README.md                # This file
+
+## How to Run
+1. Ensure your environment has the required dependencies (`scikit-learn`, `xgboost`, `pandas`, `numpy`).
+2. Place the dataset in the `data/` folder as `used_cars.csv`.
+3. Execute the training script:
+   ```bash
+   python pipeline.py
+
+### A few quick tips:
+*   **Formatting:** I have used Markdown's table and code block syntax so it renders beautifully on GitHub. 
+*   **The "$R^2$":** I used LaTeX formatting for the $R^2$ symbol as per your requirement.
+*   **Customization:** If you plan on adding more details later (like an image of your feature importance plot), you can simply drop a `.png` file in the folder and link to it in this file using `![Feature Importance](./results/feature_importance.png)`.
