@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
+# =====================================================================
+# 1. CATEGORICAL STANDARDIZER
+# =====================================================================
 class CategoricalStandardizer(BaseEstimator, TransformerMixin):
     def __init__(self, variables, tracking_dirty_values=None):
         self.variables = variables
@@ -14,6 +17,9 @@ class CategoricalStandardizer(BaseEstimator, TransformerMixin):
                 X[col] = X[col].astype(str).str.strip().replace(self.tracking_dirty_values + ['nan', 'NaN'], np.nan)
         return X
 
+# =====================================================================
+# 2. NUMERICAL STRING CLEANER
+# =====================================================================
 class NumericalStringCleaner(BaseEstimator, TransformerMixin):
     def __init__(self, variables, tracking_dirty_values=None):
         self.variables = variables
@@ -28,6 +34,9 @@ class NumericalStringCleaner(BaseEstimator, TransformerMixin):
                 X[col] = pd.to_numeric(X[col], errors='coerce')
         return X
 
+# =====================================================================
+# 3. RARE CATEGORY GROUPER
+# =====================================================================
 class RareCategoryGrouper(BaseEstimator, TransformerMixin):
     def __init__(self, variables, threshold=5):
         self.variables = variables
@@ -56,6 +65,9 @@ class RareCategoryGrouper(BaseEstimator, TransformerMixin):
             X[col] = X[col].apply(lambda v: v if v in self.frequent_.get(col, []) else 'Other')
         return X
 
+# =====================================================================
+# 4. AGE CALCULATOR
+# =====================================================================
 class AgeCalculator(BaseEstimator, TransformerMixin):
     def __init__(self, current_year=2026):
         self.current_year = current_year
@@ -66,6 +78,9 @@ class AgeCalculator(BaseEstimator, TransformerMixin):
         X['car_age'] = self.current_year - pd.to_numeric(X['model_year'], errors='coerce')
         return X
 
+# =====================================================================
+# 5. TRANSMISSION STANDARDIZER
+# =====================================================================
 class TransmissionStandardizer(BaseEstimator, TransformerMixin):
     def __init__(self, variables):
         self.variables = variables
