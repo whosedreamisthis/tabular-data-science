@@ -49,6 +49,11 @@ brand_model_pipeline = Pipeline([
     ('encoder', TargetEncoder())
 ])
 
+transmission_pipeline = Pipeline([
+    ('standardizer', TransmissionStandardizer(variables=['transmission'])),
+    ('encoder', OneHotEncoder(handle_unknown='ignore', sparse_output=False))
+])
+
 # Update your ColumnTransformer
 preprocessor = ColumnTransformer(
     transformers=[
