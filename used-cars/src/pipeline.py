@@ -7,6 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, TargetEncoder, StandardScaler
 from preprocessing import * # Import all from your file
+from sklearn.model_selection import GridSearchCV
 
 # Load and Filter Data
 df = pd.read_csv("../data/used_cars.csv")
@@ -70,8 +71,10 @@ preprocessor = ColumnTransformer(
 # Model
 full_pipeline = Pipeline([
     ('preprocessor', preprocessor),
-    ('regressor', xgb.XGBRegressor(n_estimators=1000, learning_rate=0.03, max_depth=7, n_jobs=-1))
+    ('regressor', xgb.XGBRegressor(n_estimators=1000, learning_rate=0.01, max_depth=5, n_jobs=-1, subsample= 1.0))
 ])
+
+
 
 full_pipeline.fit(X_train, y_train)
 
