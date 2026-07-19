@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Define your business costs
 COST_PER_FALSE_NEGATIVE = 1000  # Cost of missed fraud
@@ -50,3 +51,23 @@ min_cost = min(costs)
 
 print(f"Optimal Threshold: {best_threshold:.4f}")
 print(f"Minimum Total Cost: ${min_cost:,.2f}")
+
+def plot_cost_curve(y_test, y_probs, thresholds, costs, best_threshold):
+    plt.figure(figsize=(10, 6))
+    plt.plot(thresholds, costs, label='Total Operational Cost', color='blue', linewidth=2)
+    
+    # Add a vertical line at the optimal threshold
+    plt.axvline(x=best_threshold, color='red', linestyle='--', label=f'Optimal Threshold: {best_threshold:.4f}')
+    
+    plt.title('Cost-Benefit Analysis: Minimizing Operational Risk', fontsize=14)
+    plt.xlabel('Probability Threshold', fontsize=12)
+    plt.ylabel('Total Cost ($)', fontsize=12)
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    
+    # Save the plot for your README
+    plt.savefig('cost_benefit_analysis.png')
+    plt.show()
+
+# Use the variables from your optimization script
+plot_cost_curve(y_test, y_probs, thresholds, costs, best_threshold)

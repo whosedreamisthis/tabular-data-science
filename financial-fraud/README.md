@@ -48,6 +48,11 @@ To ensure the model aligns with real-world financial objectives, I performed a c
 
 By optimizing the decision threshold to minimize total operational costs, the model identifies an **optimal threshold of 0.2971**, resulting in a projected minimum total cost of **$758,265.00** on the test dataset. This approach ensures that technical performance (Recall) is balanced against the practical reality of human resource costs.
 
+### Cost-Benefit Analysis
+The following chart illustrates the total operational cost (False Negatives + False Positives) across different probability thresholds. The vertical line identifies the optimal threshold of **0.2971**, which minimizes our total financial exposure.
+
+![Cost-Benefit Analysis](cost_benefit_analysis.png)
+
 ## Model Limitations & Future Work
 
 * **False Positives:** While Recall has improved to ~0.68, the model currently flags a significant number of legitimate transactions. Future iterations will involve a cost-benefit analysis to determine the optimal decision threshold for business-specific risk tolerance.
