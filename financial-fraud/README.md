@@ -35,7 +35,7 @@ import joblib
 from src.custom_transformers import TimeFeatureTransformer
 
 # Load the serialized pipeline
-pipeline = joblib.load('fraud_detection_pipeline.joblib')
+pipeline = joblib.load('data/fraud_model.joblib')
 
 # Predict probabilities and apply a custom threshold for sensitivity
 y_probs = pipeline.predict_proba(X_input)[:, 1]
